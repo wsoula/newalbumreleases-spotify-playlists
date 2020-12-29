@@ -8,8 +8,16 @@ import yaml
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-PLAYLIST_NAME = 'sc-2020-10-31'
-RAW_END_DATE = 'Tue, 03 Jul 2020 00:00:00 +0000'
+PLAYLIST_NAME = 'sc-2020-12-29'
+# Script starts at INDEX_START and then goes back in time till it hits this date
+RAW_END_DATE = 'Tue, 01 Dec 2020 00:00:00 +0000'
+# Only change this if wanting to start at a different point in time than now
+INDEX_START = 1
+# INDEX_START = 41  # November
+# INDEX_START = 90  # October
+# INDEX_START = 141  # September
+# INDEX_START = 179  # August
+# INDEX_START = 214  # July
 # RAW_END_DATE = 'Tue, 21 Dec 2020 09:37:15 +0000'
 end_date = datetime.strptime(RAW_END_DATE, '%a, %d %b %Y %H:%M:%S %z')
 black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie Pop', 'Pop', 'Alt Rock', 'Pop Rock',
@@ -62,12 +70,12 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
-                       'Indie Electronic', 'Synth Pop']
+                       'Indie Electronic', 'Synth Pop', 'Electronic Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
-                            'Expanded Edition']
+                            'Expanded Edition', 'Live in']
 stream = open('config.yaml')
 user_config = yaml.load(stream)
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=user_config['client_id'],
@@ -80,10 +88,15 @@ graylist_playlist = sp.user_playlist_create(user_config['username'], PLAYLIST_NA
 
 def load_xml(index=1):
     """Load the XML from a url"""
+    invalid_xml = re.compile(u'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]')
     url = 'https://newalbumreleases.net/feed/?paged='+str(index)
     response = requests.get(url)
+    data = response.content.decode('utf-8')
     with open('content.xml', 'wb') as fil:
-        fil.write(response.content)
+        newdata, count = invalid_xml.subn('', data)
+        # if count > 0:
+        #   print('Removed %s illegal characters' % count
+        fil.write(newdata.encode('utf-8'))
 
 
 def parse_xml(xmlfile, style_whitelist):
@@ -141,8 +154,7 @@ def main():
                  {'styles': gray_listed_styles, 'playlist': graylist_playlist}]
     for playlist in playlists:
         artist_albums_to_add = []
-        index = 190
-        # index = 1
+        index = INDEX_START
         reached_end_date = False
         while not reached_end_date:
             print(index)
