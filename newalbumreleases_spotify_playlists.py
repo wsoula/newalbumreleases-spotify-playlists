@@ -8,9 +8,9 @@ import yaml
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-PLAYLIST_NAME = 'sc-2021-01-08'
+PLAYLIST_NAME = 'sc-2021-01-18'
 # Script starts at INDEX_START and then goes back in time till it hits this date
-RAW_END_DATE = 'Tue, 29 Dec 2020 00:00:00 +0000'
+RAW_END_DATE = 'Tue, 08 Jan 2021 00:00:00 +0000'
 # Only change this if wanting to start at a different point in time than now
 INDEX_START = 1
 # INDEX_START = 41  # November
