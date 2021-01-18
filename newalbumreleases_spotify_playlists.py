@@ -66,7 +66,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Transcendent Metal', 'Post Hardcore', 'Prog Metal', 'Post Rock', 'Instrumental Metal',
                        'Melodic Doom Metal', 'Funeral Doom Metal', 'Avant-Garde', 'Easycore', 'Experimental Rap',
                        'Epic Folk Metal', 'Spoken Word', 'Nu-Metal', 'Acoustic Rock', 'Technical Black Metal',
-                       'Neuropunk', 'Industrial Death Metal', 'Djent', 'Dark Folk']
+                       'Neuropunk', 'Industrial Death Metal', 'Djent', 'Dark Folk', 'Ska Punk']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
