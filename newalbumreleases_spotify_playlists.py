@@ -8,9 +8,9 @@ import yaml
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-PLAYLIST_NAME = 'sc-2021-01-29'
+PLAYLIST_NAME = 'sc-2021-02-05'
 # Script starts at INDEX_START and then goes back in time till it hits this date
-RAW_END_DATE = 'Tue, 18 Jan 2021 00:00:00 +0000'
+RAW_END_DATE = 'Tue, 29 Jan 2021 00:00:00 +0000'
 # Only change this if wanting to start at a different point in time than now
 INDEX_START = 1
 # INDEX_START = 41  # November
@@ -67,7 +67,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Melodic Doom Metal', 'Funeral Doom Metal', 'Avant-Garde', 'Easycore', 'Experimental Rap',
                        'Epic Folk Metal', 'Spoken Word', 'Nu-Metal', 'Acoustic Rock', 'Technical Black Metal',
                        'Neuropunk', 'Industrial Death Metal', 'Djent', 'Dark Folk', 'Ska Punk', 'EBM', 'Metal',
-                       'Technical Brutal Metal']
+                       'Technical Brutal Metal', 'Afropop', 'Jazz Funk', 'Celtic Folk']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
