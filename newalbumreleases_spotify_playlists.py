@@ -8,9 +8,9 @@ import yaml
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-PLAYLIST_NAME = 'sc-2021-02-05'
+PLAYLIST_NAME = 'sc-2021-02-26'
 # Script starts at INDEX_START and then goes back in time till it hits this date
-RAW_END_DATE = 'Tue, 29 Jan 2021 00:00:00 +0000'
+RAW_END_DATE = 'Tue, 22 Feb 2021 00:00:00 +0000'
 # Only change this if wanting to start at a different point in time than now
 INDEX_START = 1
 # INDEX_START = 41  # November
@@ -67,14 +67,16 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Melodic Doom Metal', 'Funeral Doom Metal', 'Avant-Garde', 'Easycore', 'Experimental Rap',
                        'Epic Folk Metal', 'Spoken Word', 'Nu-Metal', 'Acoustic Rock', 'Technical Black Metal',
                        'Neuropunk', 'Industrial Death Metal', 'Djent', 'Dark Folk', 'Ska Punk', 'EBM', 'Metal',
-                       'Technical Brutal Metal', 'Afropop', 'Jazz Funk', 'Celtic Folk']
+                       'Technical Brutal Metal', 'Afropop', 'Jazz Funk', 'Celtic Folk', 'Post Punk', 'Math Metal',
+                       'Psychedelic Doom Metal', 'Industrial Black Metal', 'Blackened Technical Death Metal',
+                       'Neofolk Metal', 'Atmospheric Rock']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
-                       'Indie Electronic', 'Synth Pop', 'Electronic Rock']
+                       'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
-                      'Hip-Hop']
+                      'Hip-Hop', 'Jazz-Hop']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in']
 stream = open('config.yaml')
