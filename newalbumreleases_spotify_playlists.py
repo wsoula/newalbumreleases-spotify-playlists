@@ -8,9 +8,9 @@ import yaml
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-PLAYLIST_NAME = 'sc-2021-03-22'
+PLAYLIST_NAME = 'sc-2021-04-16'
 # Script starts at INDEX_START and then goes back in time till it hits this date
-RAW_END_DATE = 'Tue, 26 Feb 2021 00:00:00 +0000'
+RAW_END_DATE = 'Tue, 09 Apr 2021 00:00:00 +0000'
 # Only change this if wanting to start at a different point in time than now
 INDEX_START = 1
 # INDEX_START = 41  # November
@@ -71,14 +71,15 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Psychedelic Doom Metal', 'Industrial Black Metal', 'Blackened Technical Death Metal',
                        'Neofolk Metal', 'Atmospheric Rock', 'Gothic Black Metal', 'Raw Black Metal', 'Swing',
                        'Folk Punk', 'Christian Pop', 'Experimental Death Meta', 'Celtic Punk', 'Pagan Metal',
-                       'Dark Metal', 'Orchestral Death Metal', 'Lo Fi']
+                       'Dark Metal', 'Orchestral Death Metal', 'Lo Fi', 'Avangarde Folk', 'Epic Doom Metal', 'Gospel',
+                       'Medieval Folk Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
-                       'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock']
+                       'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
-                      'Hip-Hop', 'Jazz-Hop']
+                      'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in']
 stream = open('config.yaml')
