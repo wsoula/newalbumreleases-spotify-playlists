@@ -3,22 +3,18 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import re
+import configparser
 import requests
 import yaml
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-PLAYLIST_NAME = 'sc-2021-04-16'
-# Script starts at INDEX_START and then goes back in time till it hits this date
-RAW_END_DATE = 'Tue, 09 Apr 2021 00:00:00 +0000'
-# Only change this if wanting to start at a different point in time than now
-INDEX_START = 1
-# INDEX_START = 41  # November
-# INDEX_START = 90  # October
-# INDEX_START = 141  # September
-# INDEX_START = 179  # August
-# INDEX_START = 214  # July
-# RAW_END_DATE = 'Tue, 21 Dec 2020 09:37:15 +0000'
+config = configparser.ConfigParser()
+config.read('config.properties')
+MAIN_SECTION = 'Main_Section'
+PLAYLIST_NAME = config.get(MAIN_SECTION, 'PLAYLIST_NAME')
+RAW_END_DATE = config.get(MAIN_SECTION, 'RAW_END_DATE')
+INDEX_START = int(config.get(MAIN_SECTION, 'INDEX_START'))
 end_date = datetime.strptime(RAW_END_DATE, '%a, %d %b %Y %H:%M:%S %z')
 black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie Pop', 'Pop', 'Alt Rock', 'Pop Rock',
                        'Power Metal', 'R&#038;B', 'Progressive Metal', 'Electronic', 'Rock&#8217;n&#8217;Roll',
