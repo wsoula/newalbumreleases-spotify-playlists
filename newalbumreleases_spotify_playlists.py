@@ -68,14 +68,16 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Neofolk Metal', 'Atmospheric Rock', 'Gothic Black Metal', 'Raw Black Metal', 'Swing',
                        'Folk Punk', 'Christian Pop', 'Experimental Death Meta', 'Celtic Punk', 'Pagan Metal',
                        'Dark Metal', 'Orchestral Death Metal', 'Lo Fi', 'Avangarde Folk', 'Epic Doom Metal', 'Gospel',
-                       'Medieval Folk Metal']
+                       'Medieval Folk Metal', 'Blackened Doom Metal', 'Drone Metal', 'Kawaii Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
-                       'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll']
+                       'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll',
+                       'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
-                      'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock']
+                      'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
+                      'Roots Rock', 'Britpop']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in']
 stream = open('config.yaml')
