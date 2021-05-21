@@ -68,7 +68,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Neofolk Metal', 'Atmospheric Rock', 'Gothic Black Metal', 'Raw Black Metal', 'Swing',
                        'Folk Punk', 'Christian Pop', 'Experimental Death Meta', 'Celtic Punk', 'Pagan Metal',
                        'Dark Metal', 'Orchestral Death Metal', 'Lo Fi', 'Avangarde Folk', 'Epic Doom Metal', 'Gospel',
-                       'Medieval Folk Metal', 'Blackened Doom Metal', 'Drone Metal', 'Kawaii Metal']
+                       'Medieval Folk Metal', 'Blackened Doom Metal', 'Drone Metal', 'Kawaii Metal', 'Deth&#8217;n&#8217;Roll',
+                       'Occult Rock', 'Alt-Country', 'Psychedelic Progressive Metal', 'Neo-Psychedelia']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
