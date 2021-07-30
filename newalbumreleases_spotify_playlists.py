@@ -73,12 +73,13 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Neo-Psychedelia', 'Depressibe Black Metal', 'Southern Metal', 'Cinematic Metal',
                        'Modern Death Metal', 'Brutal Deathcore', 'Experimental Death Metal', 'Neo Progressive Rock',
                        'Neoclassical Metal', 'Psychobilly', 'Rocn&#8217;n&#8217;Roll', 'Modern Melodic Metal',
-                       'PRogressive Metal']
+                       'PRogressive Metal', 'Glam Metal', 'Regggae']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
                        'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll',
-                       'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge', 'Symphonic Progressive Rock']
+                       'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge', 'Symphonic Progressive Rock',
+                       'Psychedelic Pop', 'Inndie Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -121,6 +122,9 @@ def parse_xml(xmlfile, style_whitelist):
         description = item.find('description').text
         style_regex_match = re.search(r'^Style: (.+)', description, re.MULTILINE).group(1)
         if date >= end_date:
+            if re.search(r'^Artist: (.+)', description, re.MULTILINE) is None:
+                print('description has no artist: ' + description)
+                break
             artist_regex_match = re.search(r'^Artist: (.+)', description, re.MULTILINE).group(1)
             album_regex_match = re.search(r'^Album: (.+)', description, re.MULTILINE).group(1)
             if style_regex_match in style_whitelist:
