@@ -74,13 +74,14 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Modern Death Metal', 'Brutal Deathcore', 'Experimental Death Metal', 'Neo Progressive Rock',
                        'Neoclassical Metal', 'Psychobilly', 'Rocn&#8217;n&#8217;Roll', 'Modern Melodic Metal',
                        'PRogressive Metal', 'Glam Metal', 'Regggae', 'Neoclassical Darkwave', 'Southern Hard Rock',
-                       'Symphonic Death Metal', 'Pagan Folk', 'Epic Metal', 'Experimental Pop', 'Atmospheric Metal']
+                       'Symphonic Death Metal', 'Pagan Folk', 'Epic Metal', 'Experimental Pop', 'Atmospheric Metal',
+                       'Ambient Rock', 'Gothic Punk', 'Blackened Heavy Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
                        'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll',
                        'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge', 'Symphonic Progressive Rock',
-                       'Psychedelic Pop', 'Inndie Rock', 'Electro']
+                       'Psychedelic Pop', 'Inndie Rock', 'Electro', 'Space Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
