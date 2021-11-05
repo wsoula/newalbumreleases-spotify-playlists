@@ -78,13 +78,13 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Ambient Rock', 'Gothic Punk', 'Blackened Heavy Metal', 'Melodic Metal', 'Rock n Roll',
                        'Blackened Metal', 'Atmospheric Progressive Metal', 'Atmosperic Dark Metal', 'Avantgarde Metal',
                        'Progressive Math Metal', 'Symphonic Gothic Metal', 'Karutrock', 'Extreme Gothic Metal',
-                       'Techniacl Death Metal']
+                       'Techniacl Death Metal', 'Theatrical Metal', 'Instrumental Hard Rock']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
                        'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll',
                        'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge', 'Symphonic Progressive Rock',
-                       'Psychedelic Pop', 'Inndie Rock', 'Electro', 'Space Rock']
+                       'Psychedelic Pop', 'Inndie Rock', 'Electro', 'Space Rock', 'Modern Hard Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
