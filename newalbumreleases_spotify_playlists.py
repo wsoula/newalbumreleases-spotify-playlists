@@ -82,7 +82,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Aocustic', 'rogressive Modern Metal', 'Reggaae', 'Celtic', 'Dark Industrial',
                        'Symphonic Progressive Metal', 'Soundtrtack', 'Deutschrock', 'Symphonic Art Rock', 'Celtic Rock',
                        'Acoustic Metal', 'Melodic Punk Rock', 'Experimntal', 'Slowcore', 'A Cappella Metal',
-                       'Modern Thrash Metal', 'K-Rock']
+                       'Modern Thrash Metal', 'K-Rock', 'Groove Metal', 'Downtenpo']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
