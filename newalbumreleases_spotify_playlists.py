@@ -85,18 +85,19 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Modern Thrash Metal', 'K-Rock', 'Groove Metal', 'Downtenpo', 'Progressive Sludge Metal',
                        'Progressive Groove Metal', 'Djentcore', 'Industrial Groove Metal', 'Counry', 'Glam Hard Rock',
                        'Instrumental Thrash Metal', 'Black Metal', 'Symphonic Extreme Metal', 'Technical Groove Metal',
-                       'Instrumental Guitar rock', 'Avant-Garde Death Metal', 'Modern Groove Metal']
+                       'Instrumental Guitar rock', 'Avant-Garde Death Metal', 'Modern Groove Metal',
+                       'Medieval Folk Rock',  'Cyberpunk Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
                        'Indie Electronic', 'Synth Pop', 'Electronic Rock', 'Heavy Rock', 'Rock&#8217;n&#8217; Roll',
                        'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge', 'Symphonic Progressive Rock',
                        'Psychedelic Pop', 'Inndie Rock', 'Electro', 'Space Rock', 'Modern Hard Rock',
-                       'Progressive Hard Rock', 'Dark Electro']
+                       'Progressive Hard Rock', 'Dark Electro', 'Indie rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
-                      'Roots Rock', 'Britpop', 'Futurepop']
+                      'Roots Rock', 'Britpop', 'Futurepop', 'Orchestral Thrash Metal']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster']
 stream = open('config.yaml')
@@ -161,7 +162,9 @@ def add_to_playlist(albums, playlist):
         if any(item in album['album'] for item in black_listed_album_words):
             black_listed_albums_by_word.append(album)
         else:
-            result = sp.search('album:'+album['album']+' artist:'+album['artist'], type='album')
+            query = 'album:'+album['album']+' artist:'+album['artist']
+            result = sp.search(query, type='album')
+#             print(result)
             track_id_list = []
             if result['albums']['total'] == 1:
                 tracks = sp.album_tracks(result['albums']['items'][0]['id'])
@@ -169,6 +172,25 @@ def add_to_playlist(albums, playlist):
                     if track['type'] == 'track':
                         track_id_list.append(track['id'])
                 sp.playlist_add_items(playlist['id'], track_id_list)
+            else:
+                # for item in result['albums']['items']:
+                #    if item['album_type'] == 'album':
+                # print('query={}'.format(query))
+                # print('{} not equal to {}'.format(result['albums']['items'][0]['name'], album['album']))
+                # print('{} not equal to {}'.format(result['albums']['items'][0]['artists'][0]['name'], album['artist']))
+                # print('Total not equal to 1, equals {}.  Checking artist and album'.format(result['albums']['total']))
+                # print(result)
+                # print(result['albums'])
+                track_id_list = []
+                for returned_album in result['albums']['items']:
+                    for artist in returned_album['artists']:
+                        if returned_album['name'] == album['album'] and artist['name'] == album['artist']:
+                            # print('Add artist={} album={} id={} to playlist'.format(returned_album['name'], artist['name'], returned_album['id']))
+                            tracks = sp.album_tracks(returned_album['id'])
+                            for track in tracks['items']:
+                                if track['type'] == 'track':
+                                    track_id_list.append(track['id'])
+                            sp.playlist_add_items(playlist['id'], track_id_list)
     print('Black listed albums by word:')
     for album in black_listed_albums_by_word:
         print(album['artist']+' - '+album['album']+' - '+album['date'])
