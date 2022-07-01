@@ -88,7 +88,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Instrumental Guitar rock', 'Avant-Garde Death Metal', 'Modern Groove Metal',
                        'Medieval Folk Rock',  'Cyberpunk Metal', 'Melodic Thrash Metal', 'Death Rock',
                        'Melodic Dark Metal', 'Atmospehric Doom Metal', 'Groove Metalcore', 'Avanta-Garde Metal',
-                       'Dark Wave', 'Neo-Soul', 'Reggae Pop']
+                       'Dark Wave', 'Neo-Soul', 'Reggae Pop', 'Neo-Medieval Metal', 'Occult Black Metal',
+                       'Progressive Heavy Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -96,7 +97,7 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Surf Rock', 'Neo-Progressive Rock', 'Post-Grunge', 'Symphonic Progressive Rock',
                        'Psychedelic Pop', 'Inndie Rock', 'Electro', 'Space Rock', 'Modern Hard Rock',
                        'Progressive Hard Rock', 'Dark Electro', 'Indie rock', 'Psychedelic Stoner Rock',
-                       'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk']
+                       'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk', 'Syntthpop']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
