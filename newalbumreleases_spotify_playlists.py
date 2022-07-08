@@ -89,7 +89,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Medieval Folk Rock',  'Cyberpunk Metal', 'Melodic Thrash Metal', 'Death Rock',
                        'Melodic Dark Metal', 'Atmospehric Doom Metal', 'Groove Metalcore', 'Avanta-Garde Metal',
                        'Dark Wave', 'Neo-Soul', 'Reggae Pop', 'Neo-Medieval Metal', 'Occult Black Metal',
-                       'Progressive Heavy Metal']
+                       'Progressive Heavy Metal', 'Avant-Garde Doom Metal', 'Melodic Symphonic Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
