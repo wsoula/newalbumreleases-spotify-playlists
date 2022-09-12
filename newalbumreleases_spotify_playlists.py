@@ -90,7 +90,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Melodic Dark Metal', 'Atmospehric Doom Metal', 'Groove Metalcore', 'Avanta-Garde Metal',
                        'Dark Wave', 'Neo-Soul', 'Reggae Pop', 'Neo-Medieval Metal', 'Occult Black Metal',
                        'Progressive Heavy Metal', 'Avant-Garde Doom Metal', 'Melodic Symphonic Metal',
-                       'Modern Metalcore', 'Bluegarss', 'World', 'Metalic Hardcore', 'C-Pop', 'Funk Metal', 'Eurodance']
+                       'Modern Metalcore', 'Bluegarss', 'World', 'Metalic Hardcore', 'C-Pop', 'Funk Metal', 'Eurodance',
+                       'Thrashcore']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -103,11 +104,12 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
-                      'Roots Rock', 'Britpop', 'Futurepop', 'Orchestral Thrash Metal', 'HIp Hop']
+                      'Roots Rock', 'Britpop', 'Futurepop', 'Orchestral Thrash Metal', 'HIp Hop', 'Dark Cabaret',
+                      'Blackgaze', 'Country Rap']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition']
 stream = open('config.yaml')
-user_config = yaml.load(stream)
+user_config = yaml.safe_load(stream)
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=user_config['client_id'],
                                                client_secret=user_config['client_secret'],
                                                redirect_uri=user_config['redirect_uri'],
