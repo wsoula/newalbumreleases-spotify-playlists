@@ -92,7 +92,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Progressive Heavy Metal', 'Avant-Garde Doom Metal', 'Melodic Symphonic Metal',
                        'Modern Metalcore', 'Bluegarss', 'World', 'Metalic Hardcore', 'C-Pop', 'Funk Metal', 'Eurodance',
                        'Thrashcore', 'Deathgrind', 'Gypsy Punk', 'Afro', 'Violin', 'Horror Metal', 'Bossanova',
-                       'Horrorcore']
+                       'Horrorcore', 'Atmosperic Sludge Metal', 'Alternative R&#038;B', 'Technical Brutal Death Metal',
+                       'Goth Punk', 'Horror Punk', 'Dowmtempo', 'Sofr Rock', 'Avant-Gard Rock']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -101,7 +102,8 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Psychedelic Pop', 'Inndie Rock', 'Electro', 'Space Rock', 'Modern Hard Rock',
                        'Progressive Hard Rock', 'Dark Electro', 'Indie rock', 'Psychedelic Stoner Rock',
                        'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk', 'Syntthpop',
-                       'Electro Industrial', 'Sythpop']
+                       'Electro Industrial', 'Sythpop', 'Atmospheric Progressive Rock', 'Indiie Pop', 'AOR',
+                       'Electro-Industrial', 'Symphonic Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -142,6 +144,8 @@ def parse_xml(xmlfile, style_whitelist):
     for item in root.findall('./channel/item'):
         raw_date = item.find('pubDate').text
         # Tue, 22 Dec 2020 09:37:15 +0000
+        if raw_date is None:
+            continue
         date = datetime.strptime(raw_date, '%a, %d %b %Y %H:%M:%S %z')
         description = item.find('description').text
         style_regex_match = re.search(r'^Style: (.+)', description, re.MULTILINE).group(1)
@@ -173,7 +177,10 @@ def add_to_playlist(albums, playlist):
             black_listed_albums_by_word.append(album)
         else:
             query = 'album:'+album['album']+' artist:'+album['artist']
-            result = sp.search(query, type='album')
+            try:
+                result = sp.search(query, type='album')
+            except spotipy.exceptions.SpotifyException:
+                print(f'rror searching for: {query}')
 #             print(result)
             track_id_list = []
             if result['albums']['total'] == 1:
@@ -200,7 +207,10 @@ def add_to_playlist(albums, playlist):
                             for track in tracks['items']:
                                 if track['type'] == 'track':
                                     track_id_list.append(track['id'])
-                            sp.playlist_add_items(playlist['id'], track_id_list)
+                            try:
+                                sp.playlist_add_items(playlist['id'], track_id_list)
+                            except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
+                                print(f"Error adding {artist} - {album['album']}")
     print('Black listed albums by word:')
     for album in black_listed_albums_by_word:
         print(album['artist']+' - '+album['album']+' - '+album['date'])
