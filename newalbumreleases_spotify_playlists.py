@@ -93,7 +93,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Modern Metalcore', 'Bluegarss', 'World', 'Metalic Hardcore', 'C-Pop', 'Funk Metal', 'Eurodance',
                        'Thrashcore', 'Deathgrind', 'Gypsy Punk', 'Afro', 'Violin', 'Horror Metal', 'Bossanova',
                        'Horrorcore', 'Atmosperic Sludge Metal', 'Alternative R&#038;B', 'Technical Brutal Death Metal',
-                       'Goth Punk', 'Horror Punk', 'Dowmtempo', 'Sofr Rock', 'Avant-Gard Rock']
+                       'Goth Punk', 'Horror Punk', 'Dowmtempo', 'Sofr Rock', 'Avant-Gard Rock', 'Deutsch Rock',
+                       'NDH']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -103,7 +104,7 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Progressive Hard Rock', 'Dark Electro', 'Indie rock', 'Psychedelic Stoner Rock',
                        'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk', 'Syntthpop',
                        'Electro Industrial', 'Sythpop', 'Atmospheric Progressive Rock', 'Indiie Pop', 'AOR',
-                       'Electro-Industrial', 'Symphonic Rock']
+                       'Electro-Industrial', 'Symphonic Rock', 'Synth Funk']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
