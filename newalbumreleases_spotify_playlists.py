@@ -112,7 +112,7 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Blackgaze', 'Country Rap', 'Electronicocre', 'Atmospehric Black Metal']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
-                            'Hits']
+                            'Hits', 'Remaster']
 stream = open('config.yaml')
 user_config = yaml.safe_load(stream)
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=user_config['client_id'],
