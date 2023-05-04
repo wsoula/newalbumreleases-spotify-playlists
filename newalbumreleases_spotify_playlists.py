@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Get newalbumreleases.net list of albums and create a spotify playlist from it"""
+""" Implement this: https://github.com/foobuzz/coca """
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import re
@@ -96,7 +97,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Goth Punk', 'Horror Punk', 'Dowmtempo', 'Sofr Rock', 'Avant-Gard Rock', 'Deutsch Rock',
                        'NDH', 'Heavyv Metal', 'Black&#8217;n&#8217;Roll', 'Atmosphwric Black Metal', 'Industrial Metalcore',
                        'Ebm', 'Modern Progressive Metal', 'Nordic Folk', 'Atmospheric Gothic Metal', 'Blues rock', 'Crust',
-                       'Modern Heavy Metal', 'Deathrock', 'Progresssive Metal']
+                       'Modern Heavy Metal', 'Deathrock', 'Progresssive Metal', 'Avant Garde', 'Retrowave']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -112,7 +113,8 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
                       'Roots Rock', 'Britpop', 'Futurepop', 'Orchestral Thrash Metal', 'HIp Hop', 'Dark Cabaret',
-                      'Blackgaze', 'Country Rap', 'Electronicocre', 'Atmospehric Black Metal', 'Hip hop', 'Fusion Rock']
+                      'Blackgaze', 'Country Rap', 'Electronicocre', 'Atmospehric Black Metal', 'Hip hop', 'Fusion Rock',
+                      'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at']
