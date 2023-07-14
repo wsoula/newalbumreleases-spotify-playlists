@@ -221,9 +221,14 @@ def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
     """ Add tracks to playlist """
     track_id_list = []
     tracks = sp.album_tracks(album['id'])
+    tracks_to_add = 2
+    singles_tracks_ids = []
+    popular_track_ids = {}
     # print(f'tracks={tracks}')
-    most_popular_track_on_album_score = 0
-    most_popular_track_on_album_id = ''
+    for track_to_add in range(0, tracks_to_add):
+        popular_track_ids[track_to_add] = {}
+        popular_track_ids[track_to_add]['track_score'] = 0
+        popular_track_ids[track_to_add]['track_id'] = ''
     for track in tracks['items']:
         # print(f'track={track}\n')
         if track['type'] == 'track':
@@ -234,13 +239,22 @@ def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
             # print(f'current_popular_track_on_album_score={current_popular_track_on_album_score} '
             #      f'most_popular_track_on_album_score={most_popular_track_on_album_score} '
             #      f"name={track['name']}" )
-            if current_popular_track_on_album_score > most_popular_track_on_album_score:
-                most_popular_track_on_album_id = track['id']
-                most_popular_track_on_album_score = current_popular_track_on_album_score
+            # Find X most popular songs on album
+            for track_to_add in range(0, tracks_to_add):
+                if current_popular_track_on_album_score > popular_track_ids[track_to_add]['track_score']:
+                    popular_track_ids[track_to_add]['track_id'] = track['id']
+                    popular_track_ids[track_to_add]['track_score'] = current_popular_track_on_album_score
+                    break
+    # Create list of track ids from the album
+    for track_count in popular_track_ids:
+        if popular_track_ids[track_count]['track_id'] != '':
+            singles_tracks_ids.append(popular_track_ids[track_count]['track_id'])
     try:
-        sp.playlist_add_items(playlist_singles['id'], [most_popular_track_on_album_id])
+        if singles_tracks_ids != []:
+            sp.playlist_add_items(playlist_singles['id'], singles_tracks_ids)
     except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
-        print(f"Error adding to singles playlist {artist} - {most_popular_track_on_album_id}")
+        print(f"Error adding to singles playlist {artist} - {singles_tracks_ids}")
+    # Add entire album to playlist
     try:
         sp.playlist_add_items(playlist['id'], track_id_list)
     except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
