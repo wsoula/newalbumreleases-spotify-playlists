@@ -97,7 +97,10 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Goth Punk', 'Horror Punk', 'Dowmtempo', 'Sofr Rock', 'Avant-Gard Rock', 'Deutsch Rock',
                        'NDH', 'Heavyv Metal', 'Black&#8217;n&#8217;Roll', 'Atmosphwric Black Metal', 'Industrial Metalcore',
                        'Ebm', 'Modern Progressive Metal', 'Nordic Folk', 'Atmospheric Gothic Metal', 'Blues rock', 'Crust',
-                       'Modern Heavy Metal', 'Deathrock', 'Progresssive Metal', 'Avant Garde', 'Retrowave']
+                       'Modern Heavy Metal', 'Deathrock', 'Progresssive Metal', 'Avant Garde', 'Retrowave', 'Indystrial Metal',
+                       'Powerpop', 'Post Metal', 'Post Industrial Metal', 'Dark Cabaret Metal', 'Dark Folk Rock', 'Parody Metal',
+                       'Heavy  Metal', 'Jam Rock', 'Chaotic Metalcore', 'Electroniccore', 'Avant Garde Metal', 'Glacial Apocha',
+                       'Beatdown Deathcore']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -108,13 +111,14 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk', 'Syntthpop',
                        'Electro Industrial', 'Sythpop', 'Atmospheric Progressive Rock', 'Indiie Pop', 'AOR',
                        'Electro-Industrial', 'Symphonic Rock', 'Synth Funk', 'Rap Metal', 'Psychedelic Trance',
-                       'Darksynth']
+                       'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
                       'Roots Rock', 'Britpop', 'Futurepop', 'Orchestral Thrash Metal', 'HIp Hop', 'Dark Cabaret',
                       'Blackgaze', 'Country Rap', 'Electronicocre', 'Atmospehric Black Metal', 'Hip hop', 'Fusion Rock',
-                      'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal']
+                      'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal', 'Melodic Modern Metal',
+                      'Hardcore Rap']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at']
@@ -125,6 +129,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=user_config['client_id'
                                                redirect_uri=user_config['redirect_uri'],
                                                scope='playlist-modify-private,playlist-modify-public'))
 whitelist_playlist = sp.user_playlist_create(user_config['username'], PLAYLIST_NAME)
+singles_playlist = sp.user_playlist_create(user_config['username'], f'{PLAYLIST_NAME}-singles')
 graylist_playlist = sp.user_playlist_create(user_config['username'], PLAYLIST_NAME+'-gray')
 
 
@@ -175,7 +180,7 @@ def parse_xml(xmlfile, style_whitelist):
     return {'artist_albums_to_add': artist_albums_to_add, 'reached_end_date': reached_end_date}
 
 
-def add_to_playlist(albums, playlist):
+def add_to_playlist(albums, playlist, playlist_singles):
     """Add albums to spotify playlist"""
     black_listed_albums_by_word = []
     for album in albums:
@@ -186,15 +191,10 @@ def add_to_playlist(albums, playlist):
             try:
                 result = sp.search(query, type='album')
             except spotipy.exceptions.SpotifyException:
-                print(f'rror searching for: {query}')
+                print(f'error searching for: {query}')
 #             print(result)
-            track_id_list = []
             if result['albums']['total'] == 1:
-                tracks = sp.album_tracks(result['albums']['items'][0]['id'])
-                for track in tracks['items']:
-                    if track['type'] == 'track':
-                        track_id_list.append(track['id'])
-                sp.playlist_add_items(playlist['id'], track_id_list)
+                add_tracks_to_playlist(result['albums']['items'][0], playlist, playlist_singles, album['artist'])
             else:
                 # for item in result['albums']['items']:
                 #    if item['album_type'] == 'album':
@@ -205,25 +205,46 @@ def add_to_playlist(albums, playlist):
                 # print(result)
                 # print(result['albums'])
                 # print(f"There are {result['albums']['total']} results, which is not 1")
-                track_id_list = []
                 for returned_album in result['albums']['items']:
-                    #print(returned_album)
+                    # print(returned_album)
                     # Got a None in the response once
                     if returned_album is not None:
                         for artist in returned_album['artists']:
                             if returned_album['name'] == album['album'] and artist['name'] == album['artist']:
                                 # print('Add artist={} album={} id={} to playlist'.format(returned_album['name'], artist['name'], returned_album['id']))
-                                tracks = sp.album_tracks(returned_album['id'])
-                                for track in tracks['items']:
-                                    if track['type'] == 'track':
-                                        track_id_list.append(track['id'])
-                                try:
-                                    sp.playlist_add_items(playlist['id'], track_id_list)
-                                except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
-                                    print(f"Error adding {artist} - {album['album']}")
+                                add_tracks_to_playlist(returned_album, playlist, playlist_singles, artist)
     print('Black listed albums by word:')
     for album in black_listed_albums_by_word:
         print(album['artist']+' - '+album['album']+' - '+album['date'])
+
+def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
+    """ Add tracks to playlist """
+    track_id_list = []
+    tracks = sp.album_tracks(album['id'])
+    # print(f'tracks={tracks}')
+    most_popular_track_on_album_score = 0
+    most_popular_track_on_album_id = ''
+    for track in tracks['items']:
+        # print(f'track={track}\n')
+        if track['type'] == 'track':
+            track_id_list.append(track['id'])
+            track_info = sp.track(track_id=track['id'])
+            current_popular_track_on_album_score = track_info['popularity']
+            # print(f'track_info={track_info}')
+            # print(f'current_popular_track_on_album_score={current_popular_track_on_album_score} '
+            #      f'most_popular_track_on_album_score={most_popular_track_on_album_score} '
+            #      f"name={track['name']}" )
+            if current_popular_track_on_album_score > most_popular_track_on_album_score:
+                most_popular_track_on_album_id = track['id']
+                most_popular_track_on_album_score = current_popular_track_on_album_score
+    try:
+        sp.playlist_add_items(playlist_singles['id'], [most_popular_track_on_album_id])
+    except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
+        print(f"Error adding to singles playlist {artist} - {most_popular_track_on_album_id}")
+    try:
+        sp.playlist_add_items(playlist['id'], track_id_list)
+    except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
+        print(f"Error adding {artist} - {album['album']}")
 
 
 def main():
@@ -243,7 +264,7 @@ def main():
                 break
             index = index + 1
         print('Playlist '+str(playlist['styles']))
-        add_to_playlist(artist_albums_to_add, playlist['playlist'])
+        add_to_playlist(artist_albums_to_add, playlist['playlist'], singles_playlist)
 
 
 if __name__ == "__main__":
