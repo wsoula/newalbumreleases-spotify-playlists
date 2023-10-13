@@ -17,6 +17,7 @@ PLAYLIST_NAME = config.get(MAIN_SECTION, 'PLAYLIST_NAME')
 RAW_END_DATE = config.get(MAIN_SECTION, 'RAW_END_DATE')
 INDEX_START = int(config.get(MAIN_SECTION, 'INDEX_START'))
 end_date = datetime.strptime(RAW_END_DATE, '%a, %d %b %Y %H:%M:%S %z')
+#headers = {"cookie":"undefined=0; cf_clearance=LZmhUoABYj1f93N_EHYMA1ZNfFiJpwK96QB73AtFIgQ-1695644757-0-1-2bfea6ac.70b19117.7cfff94c-160.0.0"}
 black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie Pop', 'Pop', 'Alt Rock', 'Pop Rock',
                        'Power Metal', 'R&#038;B', 'Progressive Metal', 'Electronic', 'Rock&#8217;n&#8217;Roll',
                        'Progressive Neoclassical Metal', 'Reggae', 'Chanson', 'Alt Rap', 'Post-Hardcore',
@@ -100,7 +101,9 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Modern Heavy Metal', 'Deathrock', 'Progresssive Metal', 'Avant Garde', 'Retrowave', 'Indystrial Metal',
                        'Powerpop', 'Post Metal', 'Post Industrial Metal', 'Dark Cabaret Metal', 'Dark Folk Rock', 'Parody Metal',
                        'Heavy  Metal', 'Jam Rock', 'Chaotic Metalcore', 'Electroniccore', 'Avant Garde Metal', 'Glacial Apocha',
-                       'Beatdown Deathcore']
+                       'Beatdown Deathcore', 'Post Black Metal', 'Dark Jazz', 'Experimental Electronica', 'Shogaze', 'Afrobeats',
+                       'Gothic Doom Metal', 'Technical Grindcore', 'Dark Heavy Metal', 'Doom Rock', 'Techhouse',
+                       'Satanic Pop Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -111,7 +114,7 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk', 'Syntthpop',
                        'Electro Industrial', 'Sythpop', 'Atmospheric Progressive Rock', 'Indiie Pop', 'AOR',
                        'Electro-Industrial', 'Symphonic Rock', 'Synth Funk', 'Rap Metal', 'Psychedelic Trance',
-                       'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge']
+                       'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -137,6 +140,7 @@ def load_xml(index=1):
     """Load the XML from a url"""
     invalid_xml = re.compile(u'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]')
     url = 'https://newalbumreleases.net/feed/?paged='+str(index)
+    #response = requests.get(url, headers=headers)
     response = requests.get(url)
     data = response.content.decode('utf-8')
     with open('content.xml', 'wb') as fil:
@@ -227,7 +231,7 @@ def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
     # print(f'tracks={tracks}')
     for track_to_add in range(0, tracks_to_add):
         popular_track_ids[track_to_add] = {}
-        popular_track_ids[track_to_add]['track_score'] = 0
+        popular_track_ids[track_to_add]['track_score'] = -1 # Default to -1 so if there is not popularity score it takes first songs
         popular_track_ids[track_to_add]['track_id'] = ''
     for track in tracks['items']:
         # print(f'track={track}\n')
