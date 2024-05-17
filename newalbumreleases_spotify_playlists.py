@@ -107,7 +107,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Rockqabilly', 'Moderm Metal', 'Yechnical Death Metal', 'Groove Death Metal', 'Experimental Doom Metal',
                        'Instrumental Death Metal', 'Oriental Metal', 'Blackened Metalcore', 'Brutal Punk', 'Latin', 'MElodic Death Metal',
                        'Samurai Metal', 'Symphonic Dark Metal', 'Blackened Post-Metal', 'Neo Soul', 'Beatdown', 'Atmospheric Post-Metal',
-                       'Acid Punk']
+                       'Acid Punk', 'Norwegian Metal', ' Metalcore', 'Neo Classical Metal', 'Post-Harcore', 'Thrash Death Metal',
+                       'Modern Industrial Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -120,7 +121,7 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Electro-Industrial', 'Symphonic Rock', 'Synth Funk', 'Rap Metal', 'Psychedelic Trance',
                        'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock', 'Avant-Garde Rock',
                        'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
-                       'Modern Symphonic Metal', 'Synth Rock']
+                       'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -128,7 +129,8 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Blackgaze', 'Country Rap', 'Electronicocre', 'Atmospehric Black Metal', 'Hip hop', 'Fusion Rock',
                       'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal', 'Melodic Modern Metal',
                       'Hardcore Rap', 'Rock Opera', 'Dark Punk', 'Doo Wop', 'Classical Crossover', 'Symphonic Folk Metal',
-                      'Epic Symphonic Metal', 'Cyber Metal', 'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal']
+                      'Epic Symphonic Metal', 'Cyber Metal', 'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal',
+                      'Melodic Punk']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at']
@@ -146,9 +148,17 @@ graylist_playlist = sp.user_playlist_create(user_config['username'], PLAYLIST_NA
 def load_xml(index=1):
     """Load the XML from a url"""
     invalid_xml = re.compile(u'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]')
-    url = 'https://newalbumreleases.net/feed/?paged='+str(index)
-    #response = requests.get(url, headers=headers)
-    response = requests.get(url)
+    # /feed/?paged=1 redirects to /feed/ and then cloudflare kicks in making the page not load
+    if index == 1:
+      url = 'https://newalbumreleases.net/feed/'
+    else:
+      url = 'https://newalbumreleases.net/feed/?paged='+str(index)
+    # Load the page manually in a browser to get the cookie_value
+    cookie_value = 'undefined=0; cf_clearance=RUCgJP1inv.S6tCThbEQdlEE7t0vLCL50iYala7NqLA-1715959014-1.0.1.1-Pj.5w.s2UHQXs9eHNsTP2cpORFKg9P594PPn1FpVvupzIHpsR28FFiAuLypI1cs6l0q.MhyaI.aiyLg5r86CEg'
+    headers = {"cookie": cookie_value,
+               "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+    response = requests.get(url, headers=headers)
+    #response = requests.get(url)
     data = response.content.decode('utf-8')
     with open('content.xml', 'wb') as fil:
         newdata, count = invalid_xml.subn('', data)
