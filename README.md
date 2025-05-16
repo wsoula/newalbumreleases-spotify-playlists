@@ -43,6 +43,8 @@ INDEX_START=1
 # INDEX_START = 214  # could be July
 ```
 
+Visit the newalbumreleases.net page and copy the cookie value into the cookie_value variable.  This is because the feed is protected by cloudflare now
+
 Run the script
 `./newalbumrelease-spotify-playlists.py`
 
