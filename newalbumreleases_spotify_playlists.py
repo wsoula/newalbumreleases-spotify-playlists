@@ -16,6 +16,8 @@ MAIN_SECTION = 'Main_Section'
 PLAYLIST_NAME = config.get(MAIN_SECTION, 'PLAYLIST_NAME')
 RAW_END_DATE = config.get(MAIN_SECTION, 'RAW_END_DATE')
 INDEX_START = int(config.get(MAIN_SECTION, 'INDEX_START'))
+COOKIE = config.get(MAIN_SECTION, 'COOKIE')
+USER_AGENT = config.get(MAIN_SECTION, 'USER_AGENT')
 end_date = datetime.strptime(RAW_END_DATE, '%a, %d %b %Y %H:%M:%S %z')
 #headers = {"cookie":"undefined=0; cf_clearance=LZmhUoABYj1f93N_EHYMA1ZNfFiJpwK96QB73AtFIgQ-1695644757-0-1-2bfea6ac.70b19117.7cfff94c-160.0.0"}
 black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie Pop', 'Pop', 'Alt Rock', 'Pop Rock',
@@ -108,7 +110,12 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Instrumental Death Metal', 'Oriental Metal', 'Blackened Metalcore', 'Brutal Punk', 'Latin', 'MElodic Death Metal',
                        'Samurai Metal', 'Symphonic Dark Metal', 'Blackened Post-Metal', 'Neo Soul', 'Beatdown', 'Atmospheric Post-Metal',
                        'Acid Punk', 'Norwegian Metal', ' Metalcore', 'Neo Classical Metal', 'Post-Harcore', 'Thrash Death Metal',
-                       'Modern Industrial Metal']
+                       'Modern Industrial Metal', 'Melodic Grindcore', 'Deitschpunk', 'Hardcore Noise', 'Avantgarde',
+                       'Electronic Metalcore', 'Acid Metal', 'Electro Avantgarde Metal', 'Dronegaze', 'THrash Metal', 'Deutschpunk',
+                       'Country Punk', 'Dark Electronic', 'Dark Blues', 'Punk Metal', 'Surf Punk', 'Phonk', 'Emo Punk',
+                       'Psychedelic Black Metal', 'Love Metal', 'Progressive Trance', 'Medieval Folk', 'Psych Punk', 'Doomgaze',
+                       'Art Folk', 'Emocore', 'Glitchcore', 'Avant-Gard Jazz', 'Experimentaal', 'Ambient Pop', 'Ambient Folk',
+                       'Psytrance', 'Noisecore', 'Technical Metalcore']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -121,7 +128,8 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Electro-Industrial', 'Symphonic Rock', 'Synth Funk', 'Rap Metal', 'Psychedelic Trance',
                        'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock', 'Avant-Garde Rock',
                        'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
-                       'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock']
+                       'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock', 'Dakwave', 'ALt Rock', 'Psychedellic Rock',
+                       'Comedy Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -130,10 +138,11 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal', 'Melodic Modern Metal',
                       'Hardcore Rap', 'Rock Opera', 'Dark Punk', 'Doo Wop', 'Classical Crossover', 'Symphonic Folk Metal',
                       'Epic Symphonic Metal', 'Cyber Metal', 'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal',
-                      'Melodic Punk']
+                      'Melodic Punk', 'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop',
+                      'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
-                            'Hits', 'Remaster', 'B-Sides', 'Live at']
+                            'Hits', 'Remaster', 'B-Sides', 'Live at', 'Live Session']
 stream = open('config.yaml')
 user_config = yaml.safe_load(stream)
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=user_config['client_id'],
@@ -153,10 +162,10 @@ def load_xml(index=1):
       url = 'https://newalbumreleases.net/feed/'
     else:
       url = 'https://newalbumreleases.net/feed/?paged='+str(index)
-    # Load the page manually in a browser to get the cookie_value
-    cookie_value = 'undefined=0; cf_clearance=RUCgJP1inv.S6tCThbEQdlEE7t0vLCL50iYala7NqLA-1715959014-1.0.1.1-Pj.5w.s2UHQXs9eHNsTP2cpORFKg9P594PPn1FpVvupzIHpsR28FFiAuLypI1cs6l0q.MhyaI.aiyLg5r86CEg'
-    headers = {"cookie": cookie_value,
-               "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+    # Load the page manually in a browser to get the cookie_value, use the same user agent as your browser
+    #cookie_value = 'undefined=0; cf_clearance=fS0fLQbGxPVA_wi9BektnGCbRPrIHfoqjE2oYLrb.PQ-1722004697-1.0.1.1-rPt6L7yST8DEhO0RIsfUJsy0nC1onTy.N8y6_QAmhygOD6SDb7PMDrzI4TGh9YMCZEOdwns3iB.YIoXj1G0T9A'
+    headers = {"cookie": COOKIE,
+               "user-agent": USER_AGENT}
     response = requests.get(url, headers=headers)
     #response = requests.get(url)
     data = response.content.decode('utf-8')
