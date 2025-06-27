@@ -18,6 +18,7 @@ RAW_END_DATE = config.get(MAIN_SECTION, 'RAW_END_DATE')
 INDEX_START = int(config.get(MAIN_SECTION, 'INDEX_START'))
 COOKIE = config.get(MAIN_SECTION, 'COOKIE')
 USER_AGENT = config.get(MAIN_SECTION, 'USER_AGENT')
+PAYLOAD = config.get(MAIN_SECTION, 'PAYLOAD')
 end_date = datetime.strptime(RAW_END_DATE, '%a, %d %b %Y %H:%M:%S %z')
 #headers = {"cookie":"undefined=0; cf_clearance=LZmhUoABYj1f93N_EHYMA1ZNfFiJpwK96QB73AtFIgQ-1695644757-0-1-2bfea6ac.70b19117.7cfff94c-160.0.0"}
 black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie Pop', 'Pop', 'Alt Rock', 'Pop Rock',
@@ -115,7 +116,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Country Punk', 'Dark Electronic', 'Dark Blues', 'Punk Metal', 'Surf Punk', 'Phonk', 'Emo Punk',
                        'Psychedelic Black Metal', 'Love Metal', 'Progressive Trance', 'Medieval Folk', 'Psych Punk', 'Doomgaze',
                        'Art Folk', 'Emocore', 'Glitchcore', 'Avant-Gard Jazz', 'Experimentaal', 'Ambient Pop', 'Ambient Folk',
-                       'Psytrance', 'Noisecore', 'Technical Metalcore']
+                       'Psytrance', 'Noisecore', 'Technical Metalcore', 'Pogressive Metal', 'Extreme Death Metal', 'Technical Thrash Metal',
+                       'Progressiva Power Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -129,7 +131,7 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock', 'Avant-Garde Rock',
                        'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
                        'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock', 'Dakwave', 'ALt Rock', 'Psychedellic Rock',
-                       'Comedy Rock']
+                       'Comedy Rock', 'Melodic Pop Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -139,7 +141,8 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Hardcore Rap', 'Rock Opera', 'Dark Punk', 'Doo Wop', 'Classical Crossover', 'Symphonic Folk Metal',
                       'Epic Symphonic Metal', 'Cyber Metal', 'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal',
                       'Melodic Punk', 'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop',
-                      'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop']
+                      'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop',
+                      'Death Disco', 'Glam']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at', 'Live Session']
@@ -166,7 +169,7 @@ def load_xml(index=1):
     #cookie_value = 'undefined=0; cf_clearance=fS0fLQbGxPVA_wi9BektnGCbRPrIHfoqjE2oYLrb.PQ-1722004697-1.0.1.1-rPt6L7yST8DEhO0RIsfUJsy0nC1onTy.N8y6_QAmhygOD6SDb7PMDrzI4TGh9YMCZEOdwns3iB.YIoXj1G0T9A'
     headers = {"cookie": COOKIE,
                "user-agent": USER_AGENT}
-    response = requests.get(url, headers=headers)
+    response = requests.post(url, headers=headers, data=PAYLOAD)
     #response = requests.get(url)
     data = response.content.decode('utf-8')
     with open('content.xml', 'wb') as fil:

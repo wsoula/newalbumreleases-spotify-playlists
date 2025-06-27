@@ -31,9 +31,15 @@ Install dependencies
 Create a `config.properties` file like below and set `PLAYLIST_NAME` and `RAW_END_DATE`
 ```
 [Main_Section]
-PLAYLIST_NAME=fixme-2021-04-23
 # Script starts at INDEX_START and then goes back in time till it hits this date
 RAW_END_DATE=Tue, 16 Apr 2021 00:00:00 +0000
+PLAYLIST_NAME=fixme-2021-04-23
+# Load https://newalbumreleases.net/feed/ manually in a browser to get the cookie_value, use the same user agent as your browser
+COOKIE=fixme
+# Check the User-Agent header on the request for the below value
+USER_AGENT=fixme
+# Below are for change to it being a post, get the data from the payload of the request in your browser
+PAYLOAD=
 # Only change this if wanting to start at a different point in time than now
 INDEX_START=1
 # INDEX_START = 41  # could be November
@@ -42,9 +48,6 @@ INDEX_START=1
 # INDEX_START = 179  # could be August
 # INDEX_START = 214  # could be July
 ```
-
-Visit the newalbumreleases.net page and copy the cookie value into the cookie_value variable.  This is because the feed is protected by cloudflare now
-
 Run the script
 `./newalbumrelease-spotify-playlists.py`
 
