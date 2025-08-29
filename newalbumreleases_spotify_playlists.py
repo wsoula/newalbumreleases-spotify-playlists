@@ -117,7 +117,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Psychedelic Black Metal', 'Love Metal', 'Progressive Trance', 'Medieval Folk', 'Psych Punk', 'Doomgaze',
                        'Art Folk', 'Emocore', 'Glitchcore', 'Avant-Gard Jazz', 'Experimentaal', 'Ambient Pop', 'Ambient Folk',
                        'Psytrance', 'Noisecore', 'Technical Metalcore', 'Pogressive Metal', 'Extreme Death Metal', 'Technical Thrash Metal',
-                       'Progressiva Power Metal']
+                       'Progressiva Power Metal', 'Hardcroe Punk', 'Undustrial Death Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -131,7 +131,7 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock', 'Avant-Garde Rock',
                        'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
                        'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock', 'Dakwave', 'ALt Rock', 'Psychedellic Rock',
-                       'Comedy Rock', 'Melodic Pop Rock']
+                       'Comedy Rock', 'Melodic Pop Rock', 'Medieval Rock', 'Sytnpop', 'Heavy Shoegaze']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -142,7 +142,7 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Epic Symphonic Metal', 'Cyber Metal', 'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal',
                       'Melodic Punk', 'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop',
                       'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop',
-                      'Death Disco', 'Glam']
+                      'Death Disco', 'Glam', 'Synth Punk']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at', 'Live Session']
@@ -169,7 +169,8 @@ def load_xml(index=1):
     #cookie_value = 'undefined=0; cf_clearance=fS0fLQbGxPVA_wi9BektnGCbRPrIHfoqjE2oYLrb.PQ-1722004697-1.0.1.1-rPt6L7yST8DEhO0RIsfUJsy0nC1onTy.N8y6_QAmhygOD6SDb7PMDrzI4TGh9YMCZEOdwns3iB.YIoXj1G0T9A'
     headers = {"cookie": COOKIE,
                "user-agent": USER_AGENT}
-    response = requests.post(url, headers=headers, data=PAYLOAD)
+    #response = requests.post(url, headers=headers, data=PAYLOAD)
+    response = requests.get(url, headers=headers)
     #response = requests.get(url)
     data = response.content.decode('utf-8')
     with open('content.xml', 'wb') as fil:
