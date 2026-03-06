@@ -119,7 +119,8 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Psytrance', 'Noisecore', 'Technical Metalcore', 'Pogressive Metal', 'Extreme Death Metal', 'Technical Thrash Metal',
                        'Progressiva Power Metal', 'Hardcroe Punk', 'Undustrial Death Metal', 'TEchnical Deathcore', 'Breakcore',
                        'SLudge Metal', 'Clasiscal', 'Ethno Pop', 'CHristian Metalcore', 'Christian Metalcore', 'Cruat Punk',
-                       'Experimental Progressive Metal', 'Wordl Music', 'BLack Metal', 'Lullaby', 'Experimental Punk']
+                       'Experimental Progressive Metal', 'Wordl Music', 'BLack Metal', 'Lullaby', 'Experimental Punk',
+                       'Brytal Death Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -133,7 +134,8 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock', 'Avant-Garde Rock',
                        'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
                        'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock', 'Dakwave', 'ALt Rock', 'Psychedellic Rock',
-                       'Comedy Rock', 'Melodic Pop Rock', 'Medieval Rock', 'Sytnpop', 'Heavy Shoegaze', 'Electropunk']
+                       'Comedy Rock', 'Melodic Pop Rock', 'Medieval Rock', 'Sytnpop', 'Heavy Shoegaze', 'Electropunk',
+                       'Avant Rock', 'Cinematic Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -204,13 +206,14 @@ def parse_xml(xmlfile, style_whitelist):
                 break
             artist_regex_match = re.search(r'^Artist: (.+)', description, re.MULTILINE).group(1)
             album_regex_match = re.search(r'^Album: (.+)', description, re.MULTILINE).group(1)
-            if style_regex_match in style_whitelist:
+            if any(style_regex_match.casefold() == item.casefold() for item in style_whitelist):
                 if artist_regex_match is not None and album_regex_match is not None:
                     artist_albums_to_add.append({'artist': artist_regex_match,
                                                  'album': album_regex_match,
                                                  'date': raw_date})
-            elif (style_regex_match not in black_listed_styles and style_regex_match not in white_listed_styles and
-                  style_regex_match not in gray_listed_styles):
+            elif (style_regex_match.casefold() not in (item.casefold() for item in black_listed_styles) and
+                 style_regex_match.casefold() not in (item.casefold() for item in white_listed_styles) and
+                 style_regex_match.casefold() not in (item.casefold() for item in gray_listed_styles)):
                 print(artist_regex_match+' - '+album_regex_match+' style of '+style_regex_match +
                       ' is an unknown style')
         else:
