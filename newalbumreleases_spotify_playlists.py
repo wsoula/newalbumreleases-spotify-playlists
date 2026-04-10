@@ -120,7 +120,7 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Progressiva Power Metal', 'Hardcroe Punk', 'Undustrial Death Metal', 'TEchnical Deathcore', 'Breakcore',
                        'SLudge Metal', 'Clasiscal', 'Ethno Pop', 'CHristian Metalcore', 'Christian Metalcore', 'Cruat Punk',
                        'Experimental Progressive Metal', 'Wordl Music', 'BLack Metal', 'Lullaby', 'Experimental Punk',
-                       'Brytal Death Metal']
+                       'Brytal Death Metal', 'Blsck Metal', 'Glam Punk', 'Techno Industrial', 'Industrial Metal', 'Melodical Death Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -147,7 +147,7 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Melodic Punk', 'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop',
                       'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop',
                       'Death Disco', 'Glam', 'Synth Punk', 'Ambient Metal', 'Symphonic Melodic Death Metal', 'Dark Ambinet',
-                      'Symphonical Metal']
+                      'Symphonical Metal', 'Goth Rock', 'Deathjazz']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at', 'Live Session']
