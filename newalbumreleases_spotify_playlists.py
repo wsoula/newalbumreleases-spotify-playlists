@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Get newalbumreleases.net list of albums and create a spotify playlist from it"""
-""" Implement this: https://github.com/foobuzz/coca """
+"""Get newalbumreleases.net list of albums and create a spotify playlist from it
+   Implement this: https://github.com/foobuzz/coca """
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import re
@@ -120,7 +120,9 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Progressiva Power Metal', 'Hardcroe Punk', 'Undustrial Death Metal', 'TEchnical Deathcore', 'Breakcore',
                        'SLudge Metal', 'Clasiscal', 'Ethno Pop', 'CHristian Metalcore', 'Christian Metalcore', 'Cruat Punk',
                        'Experimental Progressive Metal', 'Wordl Music', 'BLack Metal', 'Lullaby', 'Experimental Punk',
-                       'Brytal Death Metal', 'Blsck Metal', 'Glam Punk', 'Techno Industrial', 'Industrial Metal', 'Melodical Death Metal']
+                       'Brytal Death Metal', 'Blsck Metal', 'Glam Punk', 'Techno Industrial', 'Industrial Metal', 'Melodical Death Metal',
+                       'Pop Metal', 'Baroque Pop', 'Modern Classiclal', 'Flamenco', 'Progressive Dark Rock', 'Expermental', 'Punk',
+                       'Dram Pop', 'Medieval Metal']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -135,7 +137,8 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
                        'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock', 'Dakwave', 'ALt Rock', 'Psychedellic Rock',
                        'Comedy Rock', 'Melodic Pop Rock', 'Medieval Rock', 'Sytnpop', 'Heavy Shoegaze', 'Electropunk',
-                       'Avant Rock', 'Cinematic Rock']
+                       'Avant Rock', 'Cinematic Rock', 'Symphonic Doom Metal', 'Electronic Metal', 'Synth Metal',
+                       'Melodic Gothic Rock']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
@@ -147,7 +150,7 @@ gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Dis
                       'Melodic Punk', 'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop',
                       'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop',
                       'Death Disco', 'Glam', 'Synth Punk', 'Ambient Metal', 'Symphonic Melodic Death Metal', 'Dark Ambinet',
-                      'Symphonical Metal', 'Goth Rock', 'Deathjazz']
+                      'Symphonical Metal', 'Goth Rock', 'Deathjazz', 'Country Hip Hop']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at', 'Live Session']
@@ -163,164 +166,164 @@ graylist_playlist = sp.user_playlist_create(user_config['username'], PLAYLIST_NA
 
 
 def load_xml(index=1):
-    """Load the XML from a url"""
-    invalid_xml = re.compile(u'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]')
-    # /feed/?paged=1 redirects to /feed/ and then cloudflare kicks in making the page not load
-    if index == 1:
-      url = 'https://newalbumreleases.net/feed/'
-    else:
-      url = 'https://newalbumreleases.net/feed/?paged='+str(index)
-    # Load the page manually in a browser to get the cookie_value, use the same user agent as your browser
-    #cookie_value = 'undefined=0; cf_clearance=fS0fLQbGxPVA_wi9BektnGCbRPrIHfoqjE2oYLrb.PQ-1722004697-1.0.1.1-rPt6L7yST8DEhO0RIsfUJsy0nC1onTy.N8y6_QAmhygOD6SDb7PMDrzI4TGh9YMCZEOdwns3iB.YIoXj1G0T9A'
-    headers = {"cookie": COOKIE,
-               "user-agent": USER_AGENT}
-    # Has been switching periodically from get to post and back
-    response = requests.post(url, headers=headers, data=PAYLOAD)
-    #response = requests.get(url, headers=headers)
-    #response = requests.get(url)
-    data = response.content.decode('utf-8')
-    with open('content.xml', 'wb') as fil:
-        newdata, count = invalid_xml.subn('', data)
-        # if count > 0:
-        #   print('Removed %s illegal characters' % count
-        fil.write(newdata.encode('utf-8'))
+  """Load the XML from a url"""
+  invalid_xml = re.compile(u'[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]')
+  # /feed/?paged=1 redirects to /feed/ and then cloudflare kicks in making the page not load
+  if index == 1:
+    url = 'https://newalbumreleases.net/feed/'
+  else:
+    url = 'https://newalbumreleases.net/feed/?paged='+str(index)
+  # Load the page manually in a browser to get the cookie_value, use the same user agent as your browser
+  #cookie_value = 'undefined=0; cf_clearance=fS0fLQbGxPVA_wi9BektnGCbRPrIHfoqjE2oYLrb.PQ-1722004697-1.0.1.1-rPt6L7yST8DEhO0RIsfUJsy0nC1onTy.N8y6_QAmhygOD6SDb7PMDrzI4TGh9YMCZEOdwns3iB.YIoXj1G0T9A'
+  headers = {"cookie": COOKIE,
+             "user-agent": USER_AGENT}
+  # Has been switching periodically from get to post and back
+  response = requests.post(url, headers=headers, data=PAYLOAD)
+  #response = requests.get(url, headers=headers)
+  #response = requests.get(url)
+  data = response.content.decode('utf-8')
+  with open('content.xml', 'wb') as fil:
+    newdata, count = invalid_xml.subn('', data)
+    # if count > 0:
+    #   print('Removed %s illegal characters' % count
+    fil.write(newdata.encode('utf-8'))
 
 
 def parse_xml(xmlfile, style_whitelist):
-    """Parse the XML"""
-    reached_end_date = False
-    artist_albums_to_add = []
-    tree = ET.parse(xmlfile)
-    root = tree.getroot()
-    for item in root.findall('./channel/item'):
-        raw_date = item.find('pubDate').text
-        # Tue, 22 Dec 2020 09:37:15 +0000
-        if raw_date is None:
-            continue
-        date = datetime.strptime(raw_date, '%a, %d %b %Y %H:%M:%S %z')
-        description = item.find('description').text
-        style_regex_match = re.search(r'^Style: (.+)', description, re.MULTILINE).group(1)
-        if date >= end_date:
-            if re.search(r'^Artist: (.+)', description, re.MULTILINE) is None:
-                print('description has no artist: ' + description)
-                break
-            artist_regex_match = re.search(r'^Artist: (.+)', description, re.MULTILINE).group(1)
-            album_regex_match = re.search(r'^Album: (.+)', description, re.MULTILINE).group(1)
-            if any(style_regex_match.casefold() == item.casefold() for item in style_whitelist):
-                if artist_regex_match is not None and album_regex_match is not None:
-                    artist_albums_to_add.append({'artist': artist_regex_match,
-                                                 'album': album_regex_match,
-                                                 'date': raw_date})
-            elif (style_regex_match.casefold() not in (item.casefold() for item in black_listed_styles) and
-                 style_regex_match.casefold() not in (item.casefold() for item in white_listed_styles) and
-                 style_regex_match.casefold() not in (item.casefold() for item in gray_listed_styles)):
-                print(artist_regex_match+' - '+album_regex_match+' style of '+style_regex_match +
-                      ' is an unknown style')
-        else:
-            reached_end_date = True
+  """Parse the XML"""
+  reached_end_date = False
+  artist_albums_to_add = []
+  tree = ET.parse(xmlfile)
+  root = tree.getroot()
+  for item in root.findall('./channel/item'):
+    raw_date = item.find('pubDate').text
+    # Tue, 22 Dec 2020 09:37:15 +0000
+    if raw_date is None:
+      continue
+    date = datetime.strptime(raw_date, '%a, %d %b %Y %H:%M:%S %z')
+    description = item.find('description').text
+    style_regex_match = re.search(r'^Style: (.+)', description, re.MULTILINE).group(1)
+    if date >= end_date:
+      if re.search(r'^Artist: (.+)', description, re.MULTILINE) is None:
+        print('description has no artist: ' + description)
+        break
+      artist_regex_match = re.search(r'^Artist: (.+)', description, re.MULTILINE).group(1)
+      album_regex_match = re.search(r'^Album: (.+)', description, re.MULTILINE).group(1)
+      if any(style_regex_match.casefold() == item.casefold() for item in style_whitelist):
+        if artist_regex_match is not None and album_regex_match is not None:
+          artist_albums_to_add.append({'artist': artist_regex_match,
+                                       'album': album_regex_match,
+                                       'date': raw_date})
+      elif (style_regex_match.casefold() not in (item.casefold() for item in black_listed_styles) and
+        style_regex_match.casefold() not in (item.casefold() for item in white_listed_styles) and
+        style_regex_match.casefold() not in (item.casefold() for item in gray_listed_styles)):
+        print(artist_regex_match+' - '+album_regex_match+' style of '+style_regex_match +
+              ' is an unknown style')
+    else:
+      reached_end_date = True
     return {'artist_albums_to_add': artist_albums_to_add, 'reached_end_date': reached_end_date}
 
 
 def add_to_playlist(albums, playlist, playlist_singles):
-    """Add albums to spotify playlist"""
-    black_listed_albums_by_word = []
-    for album in albums:
-        if any(item in album['album'] for item in black_listed_album_words):
-            black_listed_albums_by_word.append(album)
-        else:
-            query = 'album:'+album['album']+' artist:'+album['artist']
-            try:
-                result = sp.search(query, type='album')
-            except spotipy.exceptions.SpotifyException:
-                print(f'error searching for: {query}')
-#             print(result)
-            if result['albums']['total'] == 1:
-                add_tracks_to_playlist(result['albums']['items'][0], playlist, playlist_singles, album['artist'])
-            else:
-                # for item in result['albums']['items']:
-                #    if item['album_type'] == 'album':
-                # print('query={}'.format(query))
-                # print('{} not equal to {}'.format(result['albums']['items'][0]['name'], album['album']))
-                # print('{} not equal to {}'.format(result['albums']['items'][0]['artists'][0]['name'], album['artist']))
-                # print('Total not equal to 1, equals {}.  Checking artist and album'.format(result['albums']['total']))
-                # print(result)
-                # print(result['albums'])
-                # print(f"There are {result['albums']['total']} results, which is not 1")
-                for returned_album in result['albums']['items']:
-                    # print(returned_album)
-                    # Got a None in the response once
-                    if returned_album is not None:
-                        for artist in returned_album['artists']:
-                            if returned_album['name'] == album['album'] and artist['name'] == album['artist']:
-                                # print('Add artist={} album={} id={} to playlist'.format(returned_album['name'], artist['name'], returned_album['id']))
-                                add_tracks_to_playlist(returned_album, playlist, playlist_singles, artist)
-    print('Black listed albums by word:')
-    for album in black_listed_albums_by_word:
-        print(album['artist']+' - '+album['album']+' - '+album['date'])
+  """Add albums to spotify playlist"""
+  black_listed_albums_by_word = []
+  for album in albums:
+    if any(item in album['album'] for item in black_listed_album_words):
+      black_listed_albums_by_word.append(album)
+    else:
+      query = 'album:'+album['album']+' artist:'+album['artist']
+      try:
+        result = sp.search(query, type='album')
+      except spotipy.exceptions.SpotifyException:
+        print(f'error searching for: {query}')
+      print(result)
+      if result['albums']['total'] == 1:
+        add_tracks_to_playlist(result['albums']['items'][0], playlist, playlist_singles, album['artist'])
+      else:
+        # for item in result['albums']['items']:
+        #    if item['album_type'] == 'album':
+        # print('query={}'.format(query))
+        # print('{} not equal to {}'.format(result['albums']['items'][0]['name'], album['album']))
+        # print('{} not equal to {}'.format(result['albums']['items'][0]['artists'][0]['name'], album['artist']))
+        # print('Total not equal to 1, equals {}.  Checking artist and album'.format(result['albums']['total']))
+        # print(result)
+        # print(result['albums'])
+        # print(f"There are {result['albums']['total']} results, which is not 1")
+        for returned_album in result['albums']['items']:
+          # print(returned_album)
+          # Got a None in the response once
+          if returned_album is not None:
+            for artist in returned_album['artists']:
+              if returned_album['name'] == album['album'] and artist['name'] == album['artist']:
+                # print('Add artist={} album={} id={} to playlist'.format(returned_album['name'], artist['name'], returned_album['id']))
+                add_tracks_to_playlist(returned_album, playlist, playlist_singles, artist)
+  print('Black listed albums by word:')
+  for album in black_listed_albums_by_word:
+    print(album['artist']+' - '+album['album']+' - '+album['date'])
 
 def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
-    """ Add tracks to playlist """
-    track_id_list = []
-    tracks = sp.album_tracks(album['id'])
-    tracks_to_add = 2
-    singles_tracks_ids = []
-    popular_track_ids = {}
-    # print(f'tracks={tracks}')
-    for track_to_add in range(0, tracks_to_add):
-        popular_track_ids[track_to_add] = {}
-        popular_track_ids[track_to_add]['track_score'] = -1 # Default to -1 so if there is not popularity score it takes first songs
-        popular_track_ids[track_to_add]['track_id'] = ''
-    for track in tracks['items']:
-        # print(f'track={track}\n')
-        if track['type'] == 'track':
-            track_id_list.append(track['id'])
-            track_info = sp.track(track_id=track['id'])
-            current_popular_track_on_album_score = track_info['popularity']
-            # print(f'track_info={track_info}')
-            # print(f'current_popular_track_on_album_score={current_popular_track_on_album_score} '
-            #      f'most_popular_track_on_album_score={most_popular_track_on_album_score} '
-            #      f"name={track['name']}" )
-            # Find X most popular songs on album
-            for track_to_add in range(0, tracks_to_add):
-                if current_popular_track_on_album_score > popular_track_ids[track_to_add]['track_score']:
-                    popular_track_ids[track_to_add]['track_id'] = track['id']
-                    popular_track_ids[track_to_add]['track_score'] = current_popular_track_on_album_score
-                    break
+  """ Add tracks to playlist """
+  track_id_list = []
+  tracks = sp.album_tracks(album['id'])
+  tracks_to_add = 2
+  singles_tracks_ids = []
+  popular_track_ids = {}
+  # print(f'tracks={tracks}')
+  for track_to_add in range(0, tracks_to_add):
+    popular_track_ids[track_to_add] = {}
+    popular_track_ids[track_to_add]['track_score'] = -1 # Default to -1 so if there is not popularity score it takes first songs
+    popular_track_ids[track_to_add]['track_id'] = ''
+  for track in tracks['items']:
+    # print(f'track={track}\n')
+    if track['type'] == 'track':
+      track_id_list.append(track['id'])
+      track_info = sp.track(track_id=track['id'])
+      current_popular_track_on_album_score = track_info['popularity']
+      # print(f'track_info={track_info}')
+      # print(f'current_popular_track_on_album_score={current_popular_track_on_album_score} '
+      #      f'most_popular_track_on_album_score={most_popular_track_on_album_score} '
+      #      f"name={track['name']}" )
+      # Find X most popular songs on album
+      for track_to_add in range(0, tracks_to_add):
+        if current_popular_track_on_album_score > popular_track_ids[track_to_add]['track_score']:
+          popular_track_ids[track_to_add]['track_id'] = track['id']
+          popular_track_ids[track_to_add]['track_score'] = current_popular_track_on_album_score
+          break
     # Create list of track ids from the album
-    for track_count in popular_track_ids:
-        if popular_track_ids[track_count]['track_id'] != '':
-            singles_tracks_ids.append(popular_track_ids[track_count]['track_id'])
-    try:
-        if singles_tracks_ids != []:
-            sp.playlist_add_items(playlist_singles['id'], singles_tracks_ids)
-    except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
-        print(f"Error adding to singles playlist {artist} - {singles_tracks_ids}")
-    # Add entire album to playlist
-    try:
-        sp.playlist_add_items(playlist['id'], track_id_list)
-    except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
-        print(f"Error adding {artist} - {album['album']}")
+  for track_count in popular_track_ids:
+    if popular_track_ids[track_count]['track_id'] != '':
+      singles_tracks_ids.append(popular_track_ids[track_count]['track_id'])
+  try:
+    if singles_tracks_ids != []:
+      sp.playlist_add_items(playlist_singles['id'], singles_tracks_ids)
+  except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
+    print(f"Error adding to singles playlist {artist} - {singles_tracks_ids}")
+  # Add entire album to playlist
+  try:
+    sp.playlist_add_items(playlist['id'], track_id_list)
+  except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
+    print(f"Error adding {artist} - {album['album']}")
 
 
 def main():
-    """Main function"""
-    playlists = [{'styles': white_listed_styles, 'playlist': whitelist_playlist},
-                 {'styles': gray_listed_styles, 'playlist': graylist_playlist}]
-    for playlist in playlists:
-        artist_albums_to_add = []
-        index = INDEX_START
-        reached_end_date = False
-        while not reached_end_date:
-            print(index)
-            load_xml(index)
-            results = parse_xml('content.xml', playlist['styles'])
-            artist_albums_to_add.extend(results['artist_albums_to_add'])
-            if results['reached_end_date']:
-                break
-            index = index + 1
-        print('Playlist '+str(playlist['styles']))
-        add_to_playlist(artist_albums_to_add, playlist['playlist'], singles_playlist)
+  """Main function"""
+  playlists = [{'styles': white_listed_styles, 'playlist': whitelist_playlist},
+               {'styles': gray_listed_styles, 'playlist': graylist_playlist}]
+  for playlist in playlists:
+    artist_albums_to_add = []
+    index = INDEX_START
+    reached_end_date = False
+    while not reached_end_date:
+      print(index)
+      load_xml(index)
+      results = parse_xml('content.xml', playlist['styles'])
+      artist_albums_to_add.extend(results['artist_albums_to_add'])
+      if results['reached_end_date']:
+        break
+      index = index + 1
+    print('Playlist '+str(playlist['styles']))
+    add_to_playlist(artist_albums_to_add, playlist['playlist'], singles_playlist)
 
 
 if __name__ == "__main__":
-    main()
+  main()
