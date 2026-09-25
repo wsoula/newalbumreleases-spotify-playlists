@@ -99,30 +99,34 @@ black_listed_styles = ['Jazz', 'Soundtrack', 'Folk', 'Ambient', 'Blues', 'Indie 
                        'Thrashcore', 'Deathgrind', 'Gypsy Punk', 'Afro', 'Violin', 'Horror Metal', 'Bossanova',
                        'Horrorcore', 'Atmosperic Sludge Metal', 'Alternative R&#038;B', 'Technical Brutal Death Metal',
                        'Goth Punk', 'Horror Punk', 'Dowmtempo', 'Sofr Rock', 'Avant-Gard Rock', 'Deutsch Rock',
-                       'NDH', 'Heavyv Metal', 'Black&#8217;n&#8217;Roll', 'Atmosphwric Black Metal', 'Industrial Metalcore',
-                       'Ebm', 'Modern Progressive Metal', 'Nordic Folk', 'Atmospheric Gothic Metal', 'Blues rock', 'Crust',
-                       'Modern Heavy Metal', 'Deathrock', 'Progresssive Metal', 'Avant Garde', 'Retrowave', 'Indystrial Metal',
-                       'Powerpop', 'Post Metal', 'Post Industrial Metal', 'Dark Cabaret Metal', 'Dark Folk Rock', 'Parody Metal',
-                       'Heavy  Metal', 'Jam Rock', 'Chaotic Metalcore', 'Electroniccore', 'Avant Garde Metal', 'Glacial Apocha',
-                       'Beatdown Deathcore', 'Post Black Metal', 'Dark Jazz', 'Experimental Electronica', 'Shogaze', 'Afrobeats',
-                       'Gothic Doom Metal', 'Technical Grindcore', 'Dark Heavy Metal', 'Doom Rock', 'Techhouse',
-                       'Satanic Pop Metal', 'Metal Crossover', 'Blackened Folk Metal', 'Noise Metal', 'Modern Punk', 'Mathncore',
-                       'Rockqabilly', 'Moderm Metal', 'Yechnical Death Metal', 'Groove Death Metal', 'Experimental Doom Metal',
-                       'Instrumental Death Metal', 'Oriental Metal', 'Blackened Metalcore', 'Brutal Punk', 'Latin', 'MElodic Death Metal',
-                       'Samurai Metal', 'Symphonic Dark Metal', 'Blackened Post-Metal', 'Neo Soul', 'Beatdown', 'Atmospheric Post-Metal',
-                       'Acid Punk', 'Norwegian Metal', ' Metalcore', 'Neo Classical Metal', 'Post-Harcore', 'Thrash Death Metal',
-                       'Modern Industrial Metal', 'Melodic Grindcore', 'Deitschpunk', 'Hardcore Noise', 'Avantgarde',
-                       'Electronic Metalcore', 'Acid Metal', 'Electro Avantgarde Metal', 'Dronegaze', 'THrash Metal', 'Deutschpunk',
-                       'Country Punk', 'Dark Electronic', 'Dark Blues', 'Punk Metal', 'Surf Punk', 'Phonk', 'Emo Punk',
-                       'Psychedelic Black Metal', 'Love Metal', 'Progressive Trance', 'Medieval Folk', 'Psych Punk', 'Doomgaze',
-                       'Art Folk', 'Emocore', 'Glitchcore', 'Avant-Gard Jazz', 'Experimentaal', 'Ambient Pop', 'Ambient Folk',
-                       'Psytrance', 'Noisecore', 'Technical Metalcore', 'Pogressive Metal', 'Extreme Death Metal', 'Technical Thrash Metal',
-                       'Progressiva Power Metal', 'Hardcroe Punk', 'Undustrial Death Metal', 'TEchnical Deathcore', 'Breakcore',
-                       'SLudge Metal', 'Clasiscal', 'Ethno Pop', 'CHristian Metalcore', 'Christian Metalcore', 'Cruat Punk',
-                       'Experimental Progressive Metal', 'Wordl Music', 'BLack Metal', 'Lullaby', 'Experimental Punk',
-                       'Brytal Death Metal', 'Blsck Metal', 'Glam Punk', 'Techno Industrial', 'Industrial Metal', 'Melodical Death Metal',
-                       'Pop Metal', 'Baroque Pop', 'Modern Classiclal', 'Flamenco', 'Progressive Dark Rock', 'Expermental', 'Punk',
-                       'Dram Pop', 'Medieval Metal']
+                       'NDH', 'Heavyv Metal', 'Black&#8217;n&#8217;Roll', 'Atmosphwric Black Metal',
+                       'Industrial Metalcore', 'Ebm', 'Modern Progressive Metal', 'Nordic Folk',
+                       'Atmospheric Gothic Metal', 'Blues rock', 'Crust', 'Modern Heavy Metal', 'Deathrock',
+                       'Progresssive Metal', 'Avant Garde', 'Retrowave', 'Indystrial Metal', 'Powerpop', 'Post Metal',
+                       'Post Industrial Metal', 'Dark Cabaret Metal', 'Dark Folk Rock', 'Parody Metal', 'Heavy  Metal',
+                       'Jam Rock', 'Chaotic Metalcore', 'Electroniccore', 'Avant Garde Metal', 'Glacial Apocha',
+                       'Beatdown Deathcore', 'Post Black Metal', 'Dark Jazz', 'Experimental Electronica', 'Shogaze',
+                       'Afrobeats', 'Gothic Doom Metal', 'Technical Grindcore', 'Dark Heavy Metal', 'Doom Rock',
+                       'Techhouse', 'Satanic Pop Metal', 'Metal Crossover', 'Blackened Folk Metal', 'Noise Metal',
+                       'Modern Punk', 'Mathncore', 'Rockqabilly', 'Moderm Metal', 'Yechnical Death Metal',
+                       'Groove Death Metal', 'Experimental Doom Metal', 'Instrumental Death Metal', 'Oriental Metal',
+                       'Blackened Metalcore', 'Brutal Punk', 'Latin', 'MElodic Death Metal', 'Samurai Metal',
+                       'Symphonic Dark Metal', 'Blackened Post-Metal', 'Neo Soul', 'Beatdown', 'Atmospheric Post-Metal',
+                       'Acid Punk', 'Norwegian Metal', ' Metalcore', 'Neo Classical Metal', 'Post-Harcore',
+                       'Thrash Death Metal', 'Modern Industrial Metal', 'Melodic Grindcore', 'Deitschpunk',
+                       'Hardcore Noise', 'Avantgarde', 'Electronic Metalcore', 'Acid Metal', 'Electro Avantgarde Metal',
+                       'Dronegaze', 'THrash Metal', 'Deutschpunk', 'Country Punk', 'Dark Electronic', 'Dark Blues',
+                       'Punk Metal', 'Surf Punk', 'Phonk', 'Emo Punk', 'Psychedelic Black Metal', 'Love Metal',
+                       'Progressive Trance', 'Medieval Folk', 'Psych Punk', 'Doomgaze', 'Art Folk', 'Emocore',
+                       'Glitchcore', 'Avant-Gard Jazz', 'Experimentaal', 'Ambient Pop', 'Ambient Folk', 'Psytrance',
+                       'Noisecore', 'Technical Metalcore', 'Pogressive Metal', 'Extreme Death Metal',
+                       'Technical Thrash Metal', 'Progressiva Power Metal', 'Hardcroe Punk', 'Undustrial Death Metal',
+                       'TEchnical Deathcore', 'Breakcore', 'SLudge Metal', 'Clasiscal', 'Ethno Pop',
+                       'CHristian Metalcore', 'Christian Metalcore', 'Cruat Punk', 'Experimental Progressive Metal',
+                       'Wordl Music', 'BLack Metal', 'Lullaby', 'Experimental Punk', 'Brytal Death Metal',
+                       'Blsck Metal', 'Glam Punk', 'Techno Industrial', 'Industrial Metal', 'Melodical Death Metal',
+                       'Pop Metal', 'Baroque Pop', 'Modern Classiclal', 'Flamenco', 'Progressive Dark Rock',
+                       'Expermental', 'Punk', 'Dram Pop', 'Medieval Metal', 'Contemporary Christian', 'Schlager']
 white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Rock', 'Modern Rock', 'Stoner Metal',
                        'Stoner Rock', 'Indie', 'Grunge', 'Electropop', 'Indietronica', 'Rapcore', 'Psychedelic',
                        'Psychedelic Metal', 'Synthwave', 'Glitch Pop', 'Darkwave', 'Electro Soul', 'Beats',
@@ -133,28 +137,30 @@ white_listed_styles = ['Indie Rock', 'Synthpop', 'Psychedelic Rock', 'Garage Roc
                        'Symphonic Heavy Metal', 'Synthrock', 'Reggae Rock', 'Garage Punk', 'Syntthpop',
                        'Electro Industrial', 'Sythpop', 'Atmospheric Progressive Rock', 'Indiie Pop', 'AOR',
                        'Electro-Industrial', 'Symphonic Rock', 'Synth Funk', 'Rap Metal', 'Psychedelic Trance',
-                       'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock', 'Avant-Garde Rock',
-                       'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock', 'Industrial Pop',
-                       'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock', 'Dakwave', 'ALt Rock', 'Psychedellic Rock',
-                       'Comedy Rock', 'Melodic Pop Rock', 'Medieval Rock', 'Sytnpop', 'Heavy Shoegaze', 'Electropunk',
-                       'Avant Rock', 'Cinematic Rock', 'Symphonic Doom Metal', 'Electronic Metal', 'Synth Metal',
-                       'Melodic Gothic Rock']
+                       'Darksynth', 'Psychedelic Stoner Metal', 'Alternative', 'Sludge', 'Melodc Rock',
+                       'Avant-Garde Rock', 'Slacker Rock', 'Gothnic Rock', 'Orchestral Rock', 'Darkpop', 'Desert Rock',
+                       'Industrial Pop', 'Modern Symphonic Metal', 'Synth Rock', 'Psych Rock', 'Electro Rock',
+                       'Dakwave', 'ALt Rock', 'Psychedellic Rock', 'Comedy Rock', 'Melodic Pop Rock', 'Medieval Rock',
+                       'Sytnpop', 'Heavy Shoegaze', 'Electropunk', 'Avant Rock', 'Cinematic Rock',
+                       'Symphonic Doom Metal', 'Electronic Metal', 'Synth Metal', 'Melodic Gothic Rock',
+                       'Melodic Pop Metal']
 gray_listed_styles = ['Hip Hop', 'Funk', 'New Age', 'Trip-Hop', 'New Wave', 'Disco', 'Trip Hop', 'Industrial Hip Hop',
                       'Alternative Hip Hop', 'Dubstep', 'Jazz Hop', 'Jazz Rap', 'Trap Rap', 'Experimental Hip Hop',
                       'Hip-Hop', 'Jazz-Hop', 'Blackened Sludge Metal', 'Symphonic Metal Opera', 'Piano Rock',
                       'Roots Rock', 'Britpop', 'Futurepop', 'Orchestral Thrash Metal', 'HIp Hop', 'Dark Cabaret',
                       'Blackgaze', 'Country Rap', 'Electronicocre', 'Atmospehric Black Metal', 'Hip hop', 'Fusion Rock',
-                      'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal', 'Melodic Modern Metal',
-                      'Hardcore Rap', 'Rock Opera', 'Dark Punk', 'Doo Wop', 'Classical Crossover', 'Symphonic Folk Metal',
-                      'Epic Symphonic Metal', 'Cyber Metal', 'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal',
-                      'Melodic Punk', 'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop',
-                      'Electro Punk', 'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop',
-                      'Death Disco', 'Glam', 'Synth Punk', 'Ambient Metal', 'Symphonic Melodic Death Metal', 'Dark Ambinet',
-                      'Symphonical Metal', 'Goth Rock', 'Deathjazz', 'Country Hip Hop']
+                      'Neoclassical Power Metal', 'Trap Metal', 'Dungeon Synth', 'Epic Melodic Death Metal',
+                      'Melodic Modern Metal', 'Hardcore Rap', 'Rock Opera', 'Dark Punk', 'Doo Wop',
+                      'Classical Crossover', 'Symphonic Folk Metal', 'Epic Symphonic Metal', 'Cyber Metal',
+                      'Progressive Dark Metal', 'Celtic Metal', 'Horror Doom Metal', 'Melodic Punk',
+                      'Horror Thrash Metal', 'Melodic Prog Rock', 'Space Opera', 'Chiptune', 'Dark Pop', 'Electro Punk',
+                      'Funk Rock', 'Extreme Symphonic Metal', 'Melodic Blackened Death Metal', 'Digital Pop',
+                      'Death Disco', 'Glam', 'Synth Punk', 'Ambient Metal', 'Symphonic Melodic Death Metal',
+                      'Dark Ambinet', 'Symphonical Metal', 'Goth Rock', 'Deathjazz', 'Country Hip Hop']
 black_listed_album_words = ['Live From', 'Live At', 'Anniversary Edition', 'Remix', 'Demos', 'Best Of',
                             'Expanded Edition', 'Live in', 'Deluxe Edition', 'Remaster', 'Definitive Edition',
                             'Hits', 'Remaster', 'B-Sides', 'Live at', 'Live Session']
-stream = open('config.yaml')
+stream = open('config.yaml', encoding='UTF-8')
 user_config = yaml.safe_load(stream)
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=user_config['client_id'],
                                                client_secret=user_config['client_secret'],
@@ -183,7 +189,7 @@ def load_xml(index=1):
   #response = requests.get(url)
   data = response.content.decode('utf-8')
   with open('content.xml', 'wb') as fil:
-    newdata, count = invalid_xml.subn('', data)
+    newdata, _ = invalid_xml.subn('', data)
     # if count > 0:
     #   print('Removed %s illegal characters' % count
     fil.write(newdata.encode('utf-8'))
@@ -221,7 +227,7 @@ def parse_xml(xmlfile, style_whitelist):
               ' is an unknown style')
     else:
       reached_end_date = True
-    return {'artist_albums_to_add': artist_albums_to_add, 'reached_end_date': reached_end_date}
+  return {'artist_albums_to_add': artist_albums_to_add, 'reached_end_date': reached_end_date}
 
 
 def add_to_playlist(albums, playlist, playlist_singles):
@@ -236,7 +242,6 @@ def add_to_playlist(albums, playlist, playlist_singles):
         result = sp.search(query, type='album')
       except spotipy.exceptions.SpotifyException:
         print(f'error searching for: {query}')
-      print(result)
       if result['albums']['total'] == 1:
         add_tracks_to_playlist(result['albums']['items'][0], playlist, playlist_singles, album['artist'])
       else:
@@ -271,7 +276,8 @@ def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
   # print(f'tracks={tracks}')
   for track_to_add in range(0, tracks_to_add):
     popular_track_ids[track_to_add] = {}
-    popular_track_ids[track_to_add]['track_score'] = -1 # Default to -1 so if there is not popularity score it takes first songs
+    # Default to -1 so if there is not popularity score it takes first songs
+    popular_track_ids[track_to_add]['track_score'] = -1
     popular_track_ids[track_to_add]['track_id'] = ''
   for track in tracks['items']:
     # print(f'track={track}\n')
@@ -294,7 +300,7 @@ def add_tracks_to_playlist(album, playlist, playlist_singles, artist):
     if popular_track_ids[track_count]['track_id'] != '':
       singles_tracks_ids.append(popular_track_ids[track_count]['track_id'])
   try:
-    if singles_tracks_ids != []:
+    if singles_tracks_ids:
       sp.playlist_add_items(playlist_singles['id'], singles_tracks_ids)
   except (requests.exceptions.HTTPError, spotipy.exceptions.SpotifyException):
     print(f"Error adding to singles playlist {artist} - {singles_tracks_ids}")
